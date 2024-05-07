@@ -10,7 +10,7 @@ export abstract class Base {
     @Column({ type: 'timestamp', nullable: true, name: 'deleted_at'})
     deletedAt: Date;
     @Column({ type: 'boolean', default: false, name: 'deleted'})
-    isDeleted: boolean;
+    deleted: boolean;
     @Column({ type: 'varchar', length: 30, nullable: true, name: 'created_by'}) 
     createdBy: string;
     @Column({ type: 'varchar', length: 30, nullable: true, name: 'updated_by' })
