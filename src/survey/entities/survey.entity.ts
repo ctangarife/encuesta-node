@@ -2,9 +2,9 @@ import { Base } from "../../base/entities/base.entity";
 import { QuestionEntity } from "../../question/entities/question.entity";
 import { Column, Entity, OneToMany } from "typeorm";
 
-@Entity('survey', {schema: 'administrator'})
+@Entity('survey', { schema: 'administrator' })
 export class SurveyEntity extends Base {
-    @Column({ type: 'varchar', length: 100, nullable: false })  
+    @Column({ type: 'varchar', length: 100, nullable: false })
     name: string;
     @Column({ type: 'varchar', length: 255, nullable: true })
     description: string;
