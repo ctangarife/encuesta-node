@@ -1,3 +1,4 @@
+import { ResponseEntity } from "src/response/entities/response.entity";
 import { Base } from "../../base/entities/base.entity";
 import { QuestionEntity } from "../../question/entities/question.entity";
 import { Column, Entity, OneToMany } from "typeorm";
@@ -14,8 +15,11 @@ export class SurveyEntity extends Base {
     startDate: Date;
     @Column({ type: 'timestamp', nullable: true, name: 'end_date' })
     endDate: Date;
+    //Relations
     @OneToMany(type => QuestionEntity, question => question.survey, { eager: true })
     questions: QuestionEntity[];
+    @OneToMany(type => ResponseEntity, response => response.response, { eager: true })
+    response: ResponseEntity[];
 
     constructor(partial: Partial<SurveyEntity>) {
         super(partial);
