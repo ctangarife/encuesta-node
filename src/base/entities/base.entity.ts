@@ -17,4 +17,8 @@ export abstract class Base {
     updatedBy: string;
     @Column({ type: 'varchar', length: 30, nullable: true, name: 'deleted_by'})
     deletedBy: string;
+
+    constructor(partial: Partial<Base> = {}) {
+        Object.assign(this, partial);
+    }   
 }

@@ -16,4 +16,9 @@ export class SurveyEntity extends Base {
     endDate: Date;
     @OneToMany(type => QuestionEntity, question => question.survey, { eager: true })
     questions: QuestionEntity[];
+
+    constructor(partial: Partial<SurveyEntity>) {
+        super(partial);
+        Object.assign(this, partial);
+    }
 }

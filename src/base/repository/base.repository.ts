@@ -39,7 +39,6 @@ export abstract class BaseRepository<T> {
       },
     };
     const queryData = await this.entityRepository.find(this.entityClass, query)
-    console.log(queryData,"Dadada")
     return this.entityRepository.find(this.entityClass, query);
   }
   async findAllBy(options: FindOneOptions | any = {}, relations: FindOptionsRelations<T>): Promise<T[]> {

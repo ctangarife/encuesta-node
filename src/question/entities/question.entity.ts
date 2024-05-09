@@ -18,4 +18,9 @@ export class QuestionEntity extends Base {
     @ManyToOne((type) => SurveyEntity, (survey) => survey.name, { eager: false })
     @JoinColumn({ name: 'id_survey', referencedColumnName: 'id' })
     survey: SurveyEntity;
+
+    constructor(partial: Partial<QuestionEntity>) { 
+        super(partial);
+        Object.assign(this, partial);
+    }
 }

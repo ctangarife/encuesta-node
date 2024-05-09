@@ -1,26 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { CreateBaseDto } from './dto/create-base.dto';
-import { UpdateBaseDto } from './dto/update-base.dto';
+import { Base } from './entities/base.entity';
+import { BaseRepository } from './repository/base.repository';
 
 @Injectable()
-export class BaseService {
-  create(createBaseDto: CreateBaseDto) {
-    return 'This action adds a new base';
+export class BaseService <T extends Base> {
+  constructor(private readonly baseRepository: BaseRepository<T>) {}
+  findAll(): Promise<T[]>{
+    return this.baseRepository.findAll();
   }
 
-  findAll() {
-    return `This action returns all base`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} base`;
-  }
-
-  update(id: number, updateBaseDto: UpdateBaseDto) {
-    return `This action updates a #${id} base`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} base`;
+  findOne(id: string): Promise<T> {
+    return this.baseRepository.findById(id);
   }
 }
