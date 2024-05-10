@@ -12,4 +12,9 @@ export class BaseService <T extends Base> {
   findOne(id: string): Promise<T> {
     return this.baseRepository.findById(id);
   }
+
+  create(createDto: any): Promise<T> {
+    console.log('create',createDto)
+    return this.baseRepository.upsert({},createDto);
+  }
 }

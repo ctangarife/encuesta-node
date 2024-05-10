@@ -33,6 +33,7 @@ export abstract class BaseRepository<T> {
   }
 
   async findAll(): Promise<T[]> {
+    console.log('findAll');
     const query: FindManyOptions = {
       where: {
         deleted: false,

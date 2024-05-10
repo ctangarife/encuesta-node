@@ -16,9 +16,9 @@ export class SurveyEntity extends Base {
     @Column({ type: 'timestamp', nullable: true, name: 'end_date' })
     endDate: Date;
     //Relations
-    @OneToMany(type => QuestionEntity, question => question.survey, { eager: true })
+    @OneToMany(type => QuestionEntity, question => question.survey)
     questions: QuestionEntity[];
-    @OneToMany(type => ResponseEntity, response => response.response, { eager: true })
+    @OneToMany(type => ResponseEntity, response => response.response)
     response: ResponseEntity[];
 
     constructor(partial: Partial<SurveyEntity>) {

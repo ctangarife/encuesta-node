@@ -8,7 +8,7 @@ import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
 export class ResponseEntity extends Base {
 
     @ManyToOne((type) => UserEntity, (user) => user.name, { eager: false })
-    @JoinColumn({ name: 'id_user', referencedColumnName: 'id' })
+   @JoinColumn({ name: 'id_user', referencedColumnName: 'id' })
     user: UserEntity;
     @ManyToOne((type) => SurveyEntity, (survey) => survey.name, { eager: false })
     @JoinColumn({ name: 'id_survey', referencedColumnName: 'id' })

@@ -9,4 +9,5 @@ export class ResponseRepository extends BaseRepository<ResponseEntity> {
     constructor(@InjectEntityManager() protected readonly entityRepository: EntityManager) {
         super(ResponseEntity, entityRepository);
     }
+    
 }
