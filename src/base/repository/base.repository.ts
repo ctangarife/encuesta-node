@@ -1,12 +1,19 @@
-import { DeepPartial, FindOneOptions, Repository, Entity, ObjectType, EntityManager, FindManyOptions, FindOptionsRelations } from 'typeorm';
+import {
+  DeepPartial,
+  FindOneOptions,
+  Repository,
+  Entity,
+  ObjectType,
+  EntityManager,
+  FindManyOptions,
+  FindOptionsRelations,
+} from 'typeorm';
 
 export abstract class BaseRepository<T> {
   constructor(
     private readonly entityClass: ObjectType<T>,
-    protected readonly entityRepository: EntityManager
-  ) {
-
-  }
+    protected readonly entityRepository: EntityManager,
+  ) {}
   async createEntity(entityData: T): Promise<T> {
     const entity = this.entityRepository.create(this.entityClass, entityData);
     await this.entityRepository.save(entity);
@@ -14,7 +21,9 @@ export abstract class BaseRepository<T> {
   }
 
   async updateEntity(id: string, entityData: T): Promise<T | null> {
-    const entity = await this.entityRepository.findOne(this.entityClass, { where: { id } } as unknown as FindOneOptions<T>);
+    const entity = await this.entityRepository.findOne(this.entityClass, {
+      where: { id },
+    } as unknown as FindOneOptions<T>);
     if (!entity) {
       return null;
     }
@@ -29,20 +38,24 @@ export abstract class BaseRepository<T> {
   }
 
   async findById(id: string): Promise<T | null> {
-    return this.entityRepository.findOne(this.entityClass, { where: { id } } as unknown as FindOneOptions<T>);
+    return this.entityRepository.findOne(this.entityClass, {
+      where: { id },
+    } as unknown as FindOneOptions<T>);
   }
 
   async findAll(): Promise<T[]> {
-    console.log('findAll');
     const query: FindManyOptions = {
       where: {
         deleted: false,
       },
     };
-    const queryData = await this.entityRepository.find(this.entityClass, query)
     return this.entityRepository.find(this.entityClass, query);
   }
-  async findAllBy(options: FindOneOptions | any = {}, relations: FindOptionsRelations<T>): Promise<T[]> {
+
+  async findAllBy(
+    options: FindOneOptions | any = {},
+    relations: FindOptionsRelations<T> = {},
+  ): Promise<T[]> {
     const query: FindManyOptions = {
       where: {
         deleted: false,
@@ -52,6 +65,8 @@ export abstract class BaseRepository<T> {
     if (relations && Object.keys(relations).length > 0) {
       query.relations = relations;
     }
+    const data = await this.entityRepository.find(this.entityClass, query);
+    console.log(data, 'Ladata');
     return this.entityRepository.find(this.entityClass, query);
   }
   async findOneBy(options: FindOneOptions | any = {}): Promise<T | null> {
@@ -63,7 +78,7 @@ export abstract class BaseRepository<T> {
     });
   }
 
-  async upsert(options: FindOneOptions, entityData: T): Promise<T> {
+  async upsert(options: FindOneOptions | any, entityData: T): Promise<T> {
     const entity = await this.findOneBy(options);
     if (!entity) {
       return this.createEntity(entityData);

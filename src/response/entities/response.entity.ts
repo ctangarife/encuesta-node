@@ -7,17 +7,26 @@ import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
 @Entity('response', { schema: 'public' })
 export class ResponseEntity extends Base {
 
-    @ManyToOne((type) => UserEntity, (user) => user.name, { eager: false })
-   @JoinColumn({ name: 'id_user', referencedColumnName: 'id' })
+    @ManyToOne(() => UserEntity, user => user.name, { eager: false })
+    @JoinColumn({ name: 'id_user', referencedColumnName: 'id' })
     user: UserEntity;
-    @ManyToOne((type) => SurveyEntity, (survey) => survey.name, { eager: false })
+
+    @ManyToOne(() => SurveyEntity, survey => survey.name, { eager: false })
     @JoinColumn({ name: 'id_survey', referencedColumnName: 'id' })
     survey: SurveyEntity;
-    @ManyToOne((type) => QuestionEntity, (question) => question.question, { eager: false })
+
+    @ManyToOne(() => QuestionEntity, question => question.question, { eager: false })
     @JoinColumn({ name: 'id_question', referencedColumnName: 'id' })
-    question: SurveyEntity;
+    question: QuestionEntity;
+
     @Column({ type: 'varchar', length: 255, nullable: true, name: 'response' })
     response: string;
+
+    @Column({type: 'varchar', length: 255, nullable: true, name: 'justification'})
+    justification: string;
+
+    @Column({ type: 'boolean', default: true, name: 'valid'})
+    valid: boolean; 
 
     constructor(partial: Partial<ResponseEntity>) {
         super(partial);

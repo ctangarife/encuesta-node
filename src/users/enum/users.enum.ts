@@ -1,7 +1,11 @@
-enum TypeIdentification {
-    CC = "CC",
-    CE = "CE",
-    TI = "TI",
+export enum TypeIdentification {
+  CC = 'CC',
+  CE = 'CE',
+  TI = 'TI',
 }
 
-export default TypeIdentification;
+export enum Gender {
+  Male = 'Masculino',
+  Female = 'Femenino',
+  Other = 'Otro',
+}
