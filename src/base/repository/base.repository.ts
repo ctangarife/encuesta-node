@@ -65,8 +65,7 @@ export abstract class BaseRepository<T> {
     if (relations && Object.keys(relations).length > 0) {
       query.relations = relations;
     }
-    const data = await this.entityRepository.find(this.entityClass, query);
-    console.log(data, 'Ladata');
+    //const data = await this.entityRepository.find(this.entityClass, query);
     return this.entityRepository.find(this.entityClass, query);
   }
   async findOneBy(options: FindOneOptions | any = {}): Promise<T | null> {

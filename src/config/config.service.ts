@@ -42,7 +42,7 @@ class ConfigService {
       migrations: ['src/migration/*.ts'],
       autoLoadEntities: true,
       synchronize: true,
-      logging: true,
+      logging: false,
       ssl: this.isProduction(),
     };
   }

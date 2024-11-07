@@ -2,6 +2,7 @@ import { Base } from 'src/base/entities/base.entity';
 import { Column, Entity, OneToMany } from 'typeorm';
 import { TypeIdentification, Gender } from '../enum/users.enum';
 import { ResponseEntity } from 'src/response/entities/response.entity';
+import { DeviceInfoEntity } from '../../devices/entities/device-info.entity';
 
 @Entity('user', { schema: 'public' })
 export class UserEntity extends Base {
@@ -59,6 +60,9 @@ export class UserEntity extends Base {
     eager: false,
   })
   response: ResponseEntity[];
+
+  @OneToMany(() => DeviceInfoEntity, (deviceInfo) => deviceInfo.user)
+  deviceInfo: DeviceInfoEntity[];
 
   constructor(partial: Partial<UserEntity>) {
     super(partial);

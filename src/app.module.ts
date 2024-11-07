@@ -8,9 +8,18 @@ import { QuestionModule } from './question/question.module';
 import { UsersModule } from './users/users.module';
 import { ResponseModule } from './response/response.module';
 import { QuestionTypeModule } from './question_type/question_type.module';
+import { DevicesModule } from './devices/devices.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(configService.getTypeOrmConfig()), SurveyModule, QuestionModule, UsersModule, ResponseModule, QuestionTypeModule],
+  imports: [
+    TypeOrmModule.forRoot(configService.getTypeOrmConfig()),
+    SurveyModule,
+    QuestionModule,
+    UsersModule,
+    ResponseModule,
+    QuestionTypeModule,
+    DevicesModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

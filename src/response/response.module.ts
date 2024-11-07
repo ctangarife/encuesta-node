@@ -12,9 +12,18 @@ import { SurveyModule } from 'src/survey/survey.module';
 import { UsersModule } from 'src/users/users.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([SurveyEntity, QuestionEntity, UserEntity, ResponseEntity]),
-    QuestionModule, SurveyModule, UsersModule],
+  imports: [
+    TypeOrmModule.forFeature([
+      SurveyEntity,
+      QuestionEntity,
+      UserEntity,
+      ResponseEntity,
+    ]),
+    QuestionModule,
+    SurveyModule,
+    UsersModule,
+  ],
   controllers: [ResponseController],
   providers: [ResponseService, ResponseRepository],
 })
-export class ResponseModule { }
+export class ResponseModule {}

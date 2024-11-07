@@ -7,6 +7,8 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
   ValidationArguments,
+  IsObject,
+  ValidateNested,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 import { Gender, TypeIdentification } from '../enum/users.enum';
@@ -51,4 +53,14 @@ export class CreateUserDto {
 
   @IsEnum(Gender)
   gender: Gender;
+}
+
+export class FormRegisterData {
+  @IsObject()
+  @ValidateNested()
+  @Type(() => CreateUserDto)
+  formData: CreateUserDto;
+
+  @IsObject()
+  deviceInfo: any;
 }

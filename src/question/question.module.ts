@@ -8,9 +8,15 @@ import { QuestionRepository } from './repository/question.repository';
 import { ResponseEntity } from 'src/response/entities/response.entity';
 import { QuestionTypeEntity } from 'src/question_type/entities/question_type.entity';
 
-
 @Module({
-  imports: [TypeOrmModule.forFeature([SurveyEntity, QuestionEntity,ResponseEntity, QuestionTypeEntity])],
+  imports: [
+    TypeOrmModule.forFeature([
+      SurveyEntity,
+      QuestionEntity,
+      ResponseEntity,
+      QuestionTypeEntity,
+    ]),
+  ],
   controllers: [QuestionController],
   providers: [QuestionService, QuestionRepository],
   exports: [QuestionRepository],
